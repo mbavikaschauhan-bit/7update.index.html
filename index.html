@@ -7498,7 +7498,7 @@
                 } catch (e) {
                     console.error('renderStatement error', e);
                 }
-            }, 50); // 50ms debounce delay
+            }, 10); // 10ms debounce delay
         };
         
         const renderStatementContent = (trades, ledger, statementBody, filters) => {
@@ -13475,13 +13475,19 @@
             }
         };
         
-        // Load initial data and render dashboard immediately after dataStore is ready
+        // Load initial data and render all pages immediately after dataStore is ready
         const loadInitialData = async () => {
             try {
                 appState.trades = await dataStore.getTrades();
                 appState.ledger = await dataStore.getLedger();
                 await renderDashboard();
-                console.log('Initial data loaded and dashboard rendered');
+                // Pre-render all data-dependent pages for instant navigation
+                renderTradeHistory();
+                renderStatement();
+                renderReports();
+                renderCalendar();
+                renderFundManagement();
+                console.log('Initial data loaded and all pages rendered');
             } catch (error) {
                 console.error('Error loading initial data:', error);
             }
