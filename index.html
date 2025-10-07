@@ -526,7 +526,15 @@
         #sidebar {
             position: fixed !important;
             top: 65px !important;
-            z-index: 20 !important;
+            z-index: 40 !important;
+        }
+        
+        /* Mobile sidebar positioning */
+        @media (max-width: 767px) {
+            #sidebar {
+                top: 0 !important;
+                height: 100vh !important;
+            }
         }
         
         /* Ensure main content doesn't overlap with fixed header */
@@ -2790,7 +2798,7 @@
             </main>
         </div>
         <!-- Sidebar Overlay -->
-        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" style="z-index: 30;"></div>
     </div>
 
     <!-- Trade Saved Success Modal -->
